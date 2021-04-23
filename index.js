@@ -1,5 +1,6 @@
 const readlineSync = require('readline-sync');
-console.log('Welcome to Quizzinga');
+const chalk = require('chalk');
+console.log(chalk.bgRedBright.bold('\t\t\t\t\tWelcome to Quizzinga\t\t\t\t'));
 console.log('');
 console.log();
 console.log('Hey Muggle! Do you consider yourself a Potterhead?\n');
@@ -34,37 +35,31 @@ const questionArray = [
   }
 ];
 let countCorrectAnswer = 0;
-const Quiz = function QuestionBank(question,options,answer,i)
-{
+const Quiz = function QuestionBank(question,options,answer,i){
   console.log(`${i}: ${question}`);
   console.log(`${options.join('\t\n')}`);
   let userResponse = parseInt(readlineSync.question("\nYour choice is: "));
-  if(userResponse == answer)
-  {
-    console.log("\nYou got it right!\n");
+  if(userResponse == answer){
+    console.log(chalk.green.bold("\nYou got it right!\n"));
     countCorrectAnswer++;
   }
-  else
-  {
-    console.log("\nSorry, the correct answer is: ",options[answer-1]);
+  else{
+    console.log(chalk.redBright.bold("\nSorry,your answer is wrong."));
+    console.log(chalk.bgCyan.bold("\nThe correct answer is: ",options[answer-1]));
   }
 }
 
-for(let i = 0;i < questionArray.length; i++) 
-{
+for(let i = 0;i < questionArray.length; i++){
   Quiz(questionArray[i].question,questionArray[i].options,questionArray[i].answer,i+1);
 }
 
-if(countCorrectAnswer === questionArray.length)
-{
-  console.log(`Congratulations! ${muggleName}  Your total score is: ${countCorrectAnswer+'/'+questionArray.length}`);
+if(countCorrectAnswer === questionArray.length){
+  console.log(chalk.bgYellow.italic(`Congratulations! ${muggleName} You proved yourself to be a real potterhead.\nYour total score is: ${countCorrectAnswer+'/'+questionArray.length}`));
 }
-else if(countCorrectAnswer === questionArray.length-1)
-{
-  console.log(`Good Job! ${muggleName} Your total score is: ${countCorrectAnswer+'/'+questionArray.length}`);
+else if(countCorrectAnswer === questionArray.length-1){
+  console.log(chalk.bgYellow.italic(`Good Job! You were really close to prove yourself a real Potterhead.\n${muggleName}, Your total score is: ${countCorrectAnswer+'/'+questionArray.length}`));
 }
-else
-{
-  console.log(`You failed to prove yourself as a Potterhead. ${muggleName} Your total score is: ${countCorrectAnswer+'/'+questionArray.length}`);
+else{
+  console.log(chalk.bgRedBright.italic.bold(`You missed by a small margin to prove yourself a real Potterhead. Better luck next time!\n${muggleName}, Your total score is: ${countCorrectAnswer+'/'+questionArray.length}`));
 }
-console.log(`\nThank you for playing\n`);
+console.log(chalk.bgMagenta.bold.underline(`\n\t\t\t\t\tThank you for playing\t\t\t\t\t\n`));
