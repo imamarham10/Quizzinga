@@ -5,8 +5,9 @@ console.log('');
 console.log();
 console.log('Hey Muggle! Do you consider yourself a Potterhead?\n');
 console.log('Try answering some Harry Potter questions and see how much you know him!\n');
-let muggleName = readlineSync.question("Please enter your name : ");
-console.log(`\nSo ${muggleName}, let's begin and see if can you answer all of them`);
+let muggleName = readlineSync.question(`Please enter your name : `);
+console.log(`\nSo ${muggleName},each question will have 4 options with exactly 1 correct answer.
+Please enter the correct option [1, 2, 3 or 4] when prompted.\nLet's begin and see if can you answer all of them\n`);
 const questionArray = [
   {
     question: "What is the Dursley's address?",
